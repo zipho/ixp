@@ -6,8 +6,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    build_user
-    save_user or render 'new'
+    if save_user.valid?
+      redirect_to next_path(@user)
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -17,8 +20,11 @@ class UsersController < ApplicationController
 
   def update
     load_user
-    build_user
-    save_user or render 'edit'
+    if update_user
+      redirect_to done_path
+    else
+      render 'edit'
+    end
   end
 
   def show
@@ -37,15 +43,16 @@ class UsersController < ApplicationController
   end
 
   def save_user
-    @user = ActiveType.cast(@user, Users::Signup)
-    if @user.save
-      redirect_to @user
-    end
+    @user = Users::Signup.start(user_params)
+  end
+
+  def update_user
+    @user = Users::Signup.next(@user, user_params)
   end
 
   def user_params
     user_params = params[:user]
-    user_params ? user_params.permit(:email, :first_name, :last_name, :password, :password_confirmation) : {}
+    user_params ? user_params.permit(:email, :first_name, :last_name, :birthday, :gender, :password, :password_confirmation) : {}
   end
 
   def user_scope

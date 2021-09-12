@@ -1,4 +1,4 @@
-<%= form_with(model: user, url: register_url) do |form| %>
+<%= form_with(model: user, url: step1_url) do |form| %>
   <% if user.errors.any? %>
     <div role="alert">
       <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
@@ -30,13 +30,14 @@
 
   <div class="field">
     <%= form.label :password %>
-    <%= form.text_field :password, class: "block border border-grey-light w-full p-3 rounded mb-4" %>
+    <%= form.password_field :password, class: "block border border-grey-light w-full p-3 rounded mb-4" %>
   </div>
 
   <div class="field">
     <%= form.label :password_confirmation %>
-    <%= form.text_field :password_confirmation, class: "block border border-grey-light w-full p-3 rounded mb-4" %>
+    <%= form.password_field :password_confirmation, class: "block border border-grey-light w-full p-3 rounded mb-4" %>
   </div>
+
 
   <%= form.submit "Sign Up", class: "w-full text-center py-3 rounded bg-indigo-600 text-white hover:bg-green-dark focus:outline-none" %>
 <% end %>

@@ -4,7 +4,7 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
+#  id              :bigint           not null, primary key
 #  birthday        :datetime
 #  email           :string           not null
 #  first_name      :string           not null

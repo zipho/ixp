@@ -22,6 +22,8 @@
     <%= form.label :gender %>
     <%= form.select(:gender, [['Male', 0], ['Female', 1], ['Non-Binary', 2]], {}, class: "block border border-grey-light w-full p-3 rounded mb-4") %>
   </div>
-
+  <div class="field">
+    <%= form.hidden_field :signup_step, value: 2, class: "block border border-grey-light w-full p-3 rounded mb-4" %>
+  </div>
   <%= form.submit "Save", class: "w-full text-center py-3 rounded bg-indigo-600 text-white hover:bg-green-dark focus:outline-none" %>
 <% end %>

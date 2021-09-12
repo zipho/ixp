@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if save_user.valid?
       redirect_to next_path(@user)
     else
-      render 'new'
+      render "new"
     end
   end
 
@@ -20,10 +20,10 @@ class UsersController < ApplicationController
 
   def update
     load_user
-    if update_user
+    if update_user.valid?
       redirect_to done_path
     else
-      render 'edit'
+      render "edit"
     end
   end
 
@@ -52,7 +52,15 @@ class UsersController < ApplicationController
 
   def user_params
     user_params = params[:user]
-    user_params ? user_params.permit(:email, :first_name, :last_name, :birthday, :gender, :password, :password_confirmation) : {}
+    fields = %i[email first_name last_name birthday gender password
+      password_confirmation signup_step]
+    if user_params
+      user_params.permit(fields)
+      sanitize_input(user_params, fields)
+      user_params
+    else
+      {}
+    end
   end
 
   def user_scope

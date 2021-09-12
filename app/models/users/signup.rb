@@ -6,11 +6,12 @@
 #
 #  id              :integer          not null, primary key
 #  birthday        :datetime
-#  email           :string
-#  first_name      :string
+#  email           :string           not null
+#  first_name      :string           not null
 #  gender          :bigint
-#  last_name       :string
-#  password_digest :string
+#  last_name       :string           not null
+#  password_digest :string           not null
+#  signup_step     :integer          default(0), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
@@ -20,14 +21,11 @@
 #
 module Users
   class Signup < ActiveType::Record[User]
-    validates :email, :first_name, :last_name, :password, presence: true, if: -> { birthday.blank? && gender.blank? }
-    validates :birthday, :gender, presence: true, unless: -> { id.blank? }
-
     EMAIL = /\A[a-z0-9+\-_.]+@[a-z\d\-.]+\.[a-z]+\z/i
     validates :email,
-              format: { with: EMAIL, message: ' is invalid' },
-              uniqueness: { case_sensitive: false },
-              length: { minimum: 4, maximum: 254 }
+      format: {with: EMAIL, message: " is invalid"},
+      uniqueness: {case_sensitive: false},
+      length: {minimum: 4, maximum: 254}
 
     PASSWORD_FORMAT = /\A
     (?=.*[A-Z]) # Must contain an uppercase character
@@ -36,11 +34,10 @@ module Users
     (?=.*[[:^alnum:]]) # Must contain a symbol
     /x
 
-    validates :password, length: { minimum: 6 }
+    validates :password, length: {minimum: 6}
     validates :password,
-              format: { with: PASSWORD_FORMAT,
-                        message: ' must include: 1 uppercase, 1 lowercase, 1 digit and 1 special character' }
-    validate :validate_age
+      format: {with: PASSWORD_FORMAT,
+               message: " must include: 1 uppercase, 1 lowercase, 1 digit and 1 special character"}
 
     has_secure_password
 
@@ -56,20 +53,14 @@ module Users
         first_name: user[:first_name],
         last_name: user[:last_name],
         password: user[:password],
-        password_confirmation: user[:password_confirmation]
+        password_confirmation: user[:password_confirmation],
+        signup_step: user[:signup_step]
       )
     end
 
     def self.next(user, params)
-      user.update({ gender: params[:gender], birthday: params[:birthday] })
-    end
-
-    private
-
-    def validate_age
-      if birthday.present? && birthday > 150.years.ago.to_date
-        errors.add(:birthday, ' should be less than 150 years old.')
-      end
+      user.update({gender: params[:gender], birthday: params[:birthday], signup_step: params[:signup_step]})
+      user
     end
   end
 end

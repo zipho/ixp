@@ -40,7 +40,7 @@ module Users
     validates :password,
               format: { with: PASSWORD_FORMAT,
                         message: ' must include: 1 uppercase, 1 lowercase, 1 digit and 1 special character' }
-    validate :validate_age, unless: -> { id.blank? }
+    validate :validate_age
 
     has_secure_password
 

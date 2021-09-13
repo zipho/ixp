@@ -1,24 +1,18 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby Version: 3.0.0
+Database: PostGresql
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
+Gems:
+```
+gem "rubocop-rails"
+gem "rubocop-rspec"
+gem 'rails-controller-testing'
+gem 'simplecov', require: false
+gem "active_type"
+gem "bcrypt"
+gem "sanitize"
+gem "factory_bot_rails", "5.1.1"
+gem "faker", git: "https://github.com/stympy/faker.git", branch: "master"
+```
 * Deployment instructions
-
-* ...

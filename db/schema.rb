@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2021_09_11_125727) do
     t.string "email", null: false
     t.string "first_name", null: false
     t.string "last_name", null: false
-    t.string "password_digest", null: false
+    t.string "password_digest"
     t.bigint "gender"
     t.datetime "birthday"
     t.integer "signup_step", default: 0, null: false

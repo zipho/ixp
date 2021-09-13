@@ -10,7 +10,7 @@
 #  first_name      :string           not null
 #  gender          :bigint
 #  last_name       :string           not null
-#  password_digest :string           not null
+#  password_digest :string
 #  signup_step     :integer          default(0), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -20,6 +20,8 @@
 #  index_users_on_email  (email) UNIQUE
 #
 class User < ApplicationRecord
+  attr_accessor :password, :password_confirmation
+
   validates :email, :first_name, :last_name, :password, presence: true, if: -> { signup_step == 1 }
   validates :birthday, :gender, presence: true, unless: -> { signup_step == 1 }
   validates :birthday, date_time: true, unless: -> { signup_step == 1 }
@@ -29,9 +31,9 @@ class User < ApplicationRecord
 
   def validate_age
     if birthday.present? && birthday < 150.years.ago.to_date
-      errors.add(:birthday, " should be less than 150 years old.")
+      errors.add(:birthday, ' should be less than 150 years old.')
     elsif birthday.present? && birthday > DateTime.now
-      errors.add(:birthday, " should not be in the future.")
+      errors.add(:birthday, ' should not be in the future.')
     end
   end
 end

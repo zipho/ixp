@@ -10,7 +10,7 @@
 #  first_name      :string           not null
 #  gender          :bigint
 #  last_name       :string           not null
-#  password_digest :string           not null
+#  password_digest :string
 #  signup_step     :integer          default(0), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -23,9 +23,9 @@ module Users
   class Signup < ActiveType::Record[User]
     EMAIL = /\A[a-z0-9+\-_.]+@[a-z\d\-.]+\.[a-z]+\z/i
     validates :email,
-      format: {with: EMAIL, message: " is invalid"},
-      uniqueness: {case_sensitive: false},
-      length: {minimum: 4, maximum: 254}
+      format: { with: EMAIL, message: " is invalid"},
+      uniqueness: { case_sensitive: false },
+      length: { minimum: 4, maximum: 254 }
 
     PASSWORD_FORMAT = /\A
     (?=.*[A-Z]) # Must contain an uppercase character

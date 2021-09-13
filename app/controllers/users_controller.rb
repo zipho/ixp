@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    #build_user
     if save_user.valid?
       redirect_to next_path(@user)
     else
@@ -20,6 +21,7 @@ class UsersController < ApplicationController
 
   def update
     load_user
+    build_user
     if update_user.valid?
       redirect_to done_path
     else
@@ -55,9 +57,9 @@ class UsersController < ApplicationController
     fields = %i[email first_name last_name birthday gender password
       password_confirmation signup_step]
     if user_params
-      user_params.permit(fields)
+      #user_params.permit(fields)
       sanitize_input(user_params, fields)
-      user_params
+      user_params.permit(fields)
     else
       {}
     end

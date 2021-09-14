@@ -12,7 +12,6 @@
     "@tailwindcss/line-clamp": "^0.2.1",
     "@tailwindcss/typography": "^0.4.1",
     "postcss": "^8.2.10",
-    "postcss-loader": "^4.3.0",
     "sass": "^1.32.7",
     "tailwindcss": "^2.2.15",
     "turbolinks": "^5.2.0",

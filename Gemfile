@@ -71,3 +71,4 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "active_type"
 gem "bcrypt"
 gem "sanitize"
+gem "tailwindcss-rails"

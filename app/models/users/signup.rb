@@ -15,10 +15,6 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
-# Indexes
-#
-#  index_users_on_email  (email) UNIQUE
-#
 module Users
   class Signup < ActiveType::Record[User]
     EMAIL = /\A[a-z0-9+\-_.]+@[a-z\d\-.]+\.[a-z]+\z/i

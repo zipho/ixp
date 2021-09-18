@@ -25,7 +25,7 @@ FileUtils.chdir APP_ROOT do
   #   FileUtils.cp 'config/database.yml.sample', 'config/database.yml'
   # end
   puts "\n== Pre-compiling assets =="
-  system! 'bin/rails rails webpacker:compile'
+  system! 'bin/rails webpacker:compile'
 
   puts "\n== Preparing database =="
   system! 'bin/rails db:prepare'

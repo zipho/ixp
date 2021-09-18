@@ -1,20 +1,26 @@
 # README
 
-How to setup
+How to setup:
 
 ```
 bin/setup
 ```
 
-How to run 
+How to run: 
 
 ```
 rails s
 ```
 
-Ruby Version: 3.0.1
+Packages:
 
+```
+Ruby Version: 3.0.1
 Database: PostGresql
+```
+
+Heroku link: ixp-user.herokuapp.com
+
 
 Gems:
 ```

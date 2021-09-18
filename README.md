@@ -19,10 +19,12 @@ Ruby Version: 3.0.1
 Database: PostGresql
 ```
 
-Heroku link: ixp-user.herokuapp.com
+Heroku link:
+
+http://ixp-user.herokuapp.com
 
 
-Gems:
+* Gems:
 ```
 gem "rubocop-rails"
 gem "rubocop-rspec"
@@ -34,4 +36,3 @@ gem "sanitize"
 gem "factory_bot_rails", "5.1.1"
 gem "faker", git: "https://github.com/stympy/faker.git", branch: "master"
 ```
-* Deployment instructions

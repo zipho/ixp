@@ -1,5 +1,17 @@
 # README
 
+How to setup
+
+```
+bin/setup
+```
+
+How to run 
+
+```
+rails s
+```
+
 Ruby Version: 3.0.1
 
 Database: PostGresql
